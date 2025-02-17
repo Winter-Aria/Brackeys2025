@@ -33,9 +33,17 @@ public class QuestManager : MonoBehaviour
 		}
 	}
 
+	private void ChangeQuestState(string id, QuestState state)
+	{
+		Quest quest = GetQuestById(id);
+		EventManager.Instance.questSystemEvents.QuestStateChange(quest);
+	}
+
 	public void StartQuest(string id)
     {
-        Debug.Log("Start quest: " + id);
+		Quest quest = GetQuestById(id); 
+		quest.InstantiateCurrentQuestStep(this.transform);
+		ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS);
     }
 
 	public void AdvanceQuest(string id)
