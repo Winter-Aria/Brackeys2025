@@ -139,6 +139,28 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 2152}
     spritePosition: {x: 0, y: 0}
+  - name: Layer 7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 6448
+      width: 2660
+      height: 980
+    spriteID: 988819573c840c64aa4b1de1237e187f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 6448}
+    spritePosition: {x: 571, y: 668}
   - name: Background
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -241,6 +263,16 @@ ScriptedImporter:
     spriteID: de819dee6e3b7dd4babaa1500695c06a
     layerID: 15
     mosaicPosition: {x: 4, y: 2152}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Layer 7
+    spriteName: Layer 7
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 988819573c840c64aa4b1de1237e187f
+    layerID: 18
+    mosaicPosition: {x: 4, y: 6448}
     flatten: 0
     isImported: 1
     isVisible: 1
