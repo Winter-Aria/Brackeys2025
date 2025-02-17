@@ -1,13 +1,16 @@
-using System;
+using UnityEngine;
 
-public class TaskEvents
+public class TaskEvents : MonoBehaviour
 {
-	public event Action rubbishCollected;
-	public void RubbishCollected()
-	{
-		if (rubbishCollected != null)
-		{
-			rubbishCollected();
-		}
-	}
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }
