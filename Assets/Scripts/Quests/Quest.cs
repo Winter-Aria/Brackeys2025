@@ -3,6 +3,7 @@ using UnityEngine;
 public class Quest
 {
 	public QuestInfoSO info;
+	public int timeToAcknowledge;
 	public QuestState state;
 
 	private int currentQuestStepIndex;
@@ -10,8 +11,9 @@ public class Quest
 	public Quest(QuestInfoSO questInfo)
 	{
 		this.info = questInfo;
-		this.state = QuestState.UNSTARTED;
+		this.state = QuestState.NOTIFIED;
 		this.currentQuestStepIndex = 0;
+		this.timeToAcknowledge = 10;
 	}
 
 	public void MoveToNextStep()
@@ -29,7 +31,12 @@ public class Quest
 		GameObject questStepPrefab = GetCurrentQuestStepPrefab();
 		if (questStepPrefab != null)
 		{
-			Object.Instantiate<GameObject>(questStepPrefab, parentTransform);
+			QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform)
+				.GetComponent<QuestStep>();
+			questStep.InitializeQuestStep(info.id);
+		} else
+		{
+			Debug.Log("Gone wrong");
 		}
 	}
 

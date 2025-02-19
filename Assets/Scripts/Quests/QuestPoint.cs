@@ -7,7 +7,7 @@ public class QuestPoint : MonoBehaviour
 	[SerializeField] private QuestInfoSO questInfo;
 
 	private string questId;
-	public QuestState currentQuestState;
+	[SerializeField] private QuestState currentQuestState;
 
 	[Header("Config")]
 	[SerializeField] private bool startButton = true;

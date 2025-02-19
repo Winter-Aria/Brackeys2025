@@ -3,12 +3,9 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-	private Dictionary<string, Quest> questMap;
-
-	private void Awake()
-	{
-		questMap = CreateQuestMap();
-	}
+	private Dictionary<string, Quest> notifiedQuestMap = new Dictionary<string, Quest>();
+	private Dictionary<string, Quest> activeQuestMap = new Dictionary<string, Quest>();
+	private int totalScore = 0;
 
 	private void OnEnable()
 	{
@@ -26,57 +23,78 @@ public class QuestManager : MonoBehaviour
 
 	private void Start()
 	{
-		//Sends the QuestStateChange() event for each quest in the map 
-		foreach (Quest quest in questMap.Values)
-		{
-			EventManager.Instance.questSystemEvents.QuestStateChange(quest);
-		}
+		CreateRandomQuest();
 	}
 
-	private void ChangeQuestState(string id, QuestState state)
+	private void Update()
 	{
-		Quest quest = GetQuestById(id);
+		//foreach (Quest quest in 
+	}
+
+	private void ChangeQuestState(string id, QuestState state, Dictionary<string, Quest> map)
+	{
+		Quest quest = GetQuestById(id, map);
+		quest.state = state;
 		EventManager.Instance.questSystemEvents.QuestStateChange(quest);
 	}
 
 	public void StartQuest(string id)
 	{
 		Debug.Log("Start quest: " + id);
-		Quest quest = GetQuestById(id);
+
+		Quest quest = GetQuestById(id, notifiedQuestMap);
 		quest.InstantiateCurrentQuestStep(this.transform);
-		ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS);
+		ChangeQuestState(quest.info.id, QuestState.IN_PROGRESS, notifiedQuestMap);
+
+		activeQuestMap.Add(quest.info.id, quest);
+		notifiedQuestMap.Remove(quest.info.id);
 	}
 
 	public void AdvanceQuest(string id)
 	{
-		Debug.Log("Advance quest: " + id);
+		Debug.Log("Advancing quest: " + id);
+		Quest quest = GetQuestById(id, activeQuestMap);
+
+		quest.MoveToNextStep();
+
+		if (quest.CurrentStepExists())
+		{
+			quest.InstantiateCurrentQuestStep(this.transform);
+		} 
+		else
+		{
+			ChangeQuestState(id, QuestState.REQUIREMENTS_MET, activeQuestMap);
+		}
 	}
 
 	public void FinishQuest(string id)
 	{
 		Debug.Log("Finish quest: " + id);
+		Quest quest = GetQuestById(id, activeQuestMap);
+		ClaimRewards(quest);
+
+		notifiedQuestMap.Remove(quest.info.id);
 	}
 
-	private Dictionary<string, Quest> CreateQuestMap()
+	private void ClaimRewards(Quest quest)
 	{
-		//Loads all QuestInfoSOs from Assets/Resources/Quests
+		totalScore = totalScore + quest.info.score;
+	}
+
+	public void CreateRandomQuest()
+	{
 		QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
-		//Create the map
-		Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
-		foreach (QuestInfoSO questInfo in allQuests)
-		{
-			if (idToQuestMap.ContainsKey(questInfo.id))
-			{
-				Debug.LogWarning("Two quests with same id: " + questInfo.id);
-			}
-			idToQuestMap.Add(questInfo.id, new Quest(questInfo));
-		}
-		return idToQuestMap;
+
+		int randomNum = Random.Range(0, allQuests.Length);
+		QuestInfoSO questInfo = allQuests[randomNum];
+		Quest questToAdd = new Quest(questInfo);
+
+		notifiedQuestMap.Add(questInfo.id, questToAdd);
 	}
 
-	private Quest GetQuestById(string id)
+	private Quest GetQuestById(string id, Dictionary<string, Quest> map)
 	{
-		Quest quest = questMap[id];
+		Quest quest = map[id];
 		if (quest == null)
 		{
 			Debug.LogError("ID \"" + id + "\" not found in quest map");
