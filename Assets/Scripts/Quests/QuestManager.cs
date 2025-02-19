@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class QuestManager : MonoBehaviour
@@ -6,6 +7,9 @@ public class QuestManager : MonoBehaviour
 	private Dictionary<string, Quest> notifiedQuestMap = new Dictionary<string, Quest>();
 	private Dictionary<string, Quest> activeQuestMap = new Dictionary<string, Quest>();
 	private int totalScore = 0;
+
+	[SerializeField] private GameObject questUIPrefab;
+	[SerializeField] private Transform questListParent;
 
 	private void OnEnable()
 	{
@@ -23,7 +27,7 @@ public class QuestManager : MonoBehaviour
 
 	private void Start()
 	{
-		CreateRandomQuest();
+		//CreateRandomQuest();
 	}
 
 	private void Update()
@@ -89,6 +93,10 @@ public class QuestManager : MonoBehaviour
 		QuestInfoSO questInfo = allQuests[randomNum];
 		Quest questToAdd = new Quest(questInfo);
 
+		GameObject questUI = Instantiate(questUIPrefab, questListParent);
+		questUI.gameObject.name = questInfo.id;
+		questUI.GetComponent<QuestUI>().Setup(questToAdd, this);
+
 		notifiedQuestMap.Add(questInfo.id, questToAdd);
 	}
 
@@ -100,5 +108,10 @@ public class QuestManager : MonoBehaviour
 			Debug.LogError("ID \"" + id + "\" not found in quest map");
 		}
 		return quest;
+	}
+
+	public void ButtonPress()
+	{
+		CreateRandomQuest();
 	}
 }

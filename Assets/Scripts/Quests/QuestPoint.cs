@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class QuestPoint : MonoBehaviour
 {
-	[SerializeField] private QuestInfoSO questInfo;
-
 	private string questId;
 	[SerializeField] private QuestState currentQuestState;
 
@@ -13,9 +11,9 @@ public class QuestPoint : MonoBehaviour
 	[SerializeField] private bool startButton = true;
 	[SerializeField] private bool endButton = true;
 
-	private void Awake()
+	private void Start()
 	{
-		questId = questInfo.id;
+		questId = gameObject.transform.parent.parent.name;
 	}
 
 	private void OnEnable()

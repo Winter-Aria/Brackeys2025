@@ -7,6 +7,7 @@ public class EventManager : MonoBehaviour
 
 	public TaskEvents taskEvents;
 	public QuestSystemEvents questSystemEvents;
+	public UIEvents uiEvents;
 
 	private void Awake()
 	{
@@ -19,6 +20,7 @@ public class EventManager : MonoBehaviour
 		//Initialize events
 		taskEvents = new TaskEvents();
 		questSystemEvents = new QuestSystemEvents();
+		uiEvents = new UIEvents();
 	}
 
 }

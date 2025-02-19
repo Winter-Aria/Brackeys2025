@@ -6,6 +6,7 @@ public class QuestInfoSO : ScriptableObject
     [field: SerializeField] public string id {  get; private set; }
 
 	public string displayName;
+	public string displayRoom;
 
 	public GameObject[] questStepPrefabs;
 
