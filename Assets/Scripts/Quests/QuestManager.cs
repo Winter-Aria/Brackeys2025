@@ -8,7 +8,6 @@ public class QuestManager : MonoBehaviour
 	private Dictionary<string, Quest> activeQuestMap = new Dictionary<string, Quest>();
 	private int totalScore = 0;
 
-	private GameObject questUI;
 	[SerializeField] private GameObject questUIPrefab;
 	[SerializeField] private Transform questListParent;
 
@@ -78,8 +77,7 @@ public class QuestManager : MonoBehaviour
 		Quest quest = GetQuestById(id, activeQuestMap);
 		ClaimRewards(quest);
 
-		activeQuestMap.Remove(quest.info.id);
-		Destroy(questUI);
+		notifiedQuestMap.Remove(quest.info.id);
 	}
 
 	private void ClaimRewards(Quest quest)
@@ -95,7 +93,7 @@ public class QuestManager : MonoBehaviour
 		QuestInfoSO questInfo = allQuests[randomNum];
 		Quest questToAdd = new Quest(questInfo);
 
-		questUI = Instantiate(questUIPrefab, questListParent);
+		GameObject questUI = Instantiate(questUIPrefab, questListParent);
 		questUI.gameObject.name = questInfo.id;
 		questUI.GetComponent<QuestUI>().Setup(questToAdd, this);
 
