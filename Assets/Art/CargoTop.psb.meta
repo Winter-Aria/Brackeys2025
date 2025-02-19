@@ -117,7 +117,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 0, y: 0}
-  - name: Layer 2
+  - name: Layer 3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -129,7 +129,7 @@ ScriptedImporter:
       y: 4300
       width: 3226
       height: 613
-    spriteID: 15f78a33ea9dad44c8ae4c049e32b10d
+    spriteID: 89a540b5820dde54599e1eb87426aaf4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -210,12 +210,12 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Layer 2
-    spriteName: Layer 2
+  - name: Layer 3
+    spriteName: Layer 3
     isGroup: 0
     parentIndex: -1
-    spriteID: 15f78a33ea9dad44c8ae4c049e32b10d
-    layerID: 7
+    spriteID: 89a540b5820dde54599e1eb87426aaf4
+    layerID: 10
     mosaicPosition: {x: 4, y: 4300}
     flatten: 0
     isImported: 1
