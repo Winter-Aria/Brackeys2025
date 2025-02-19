@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fb810a8af5bae4f98e41baaa1d231e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rubbishPrefab: {fileID: 6120528815571030061, guid: 93a6a0da6ace48149aa39a208b246a1f, type: 3}
+  questListParent: {fileID: 0}
