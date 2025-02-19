@@ -10,6 +10,7 @@ public class QuestManager : MonoBehaviour
 
 	[SerializeField] private GameObject questUIPrefab;
 	[SerializeField] private Transform questListParent;
+	private GameObject questUI;
 
 	private void OnEnable()
 	{
@@ -77,7 +78,8 @@ public class QuestManager : MonoBehaviour
 		Quest quest = GetQuestById(id, activeQuestMap);
 		ClaimRewards(quest);
 
-		notifiedQuestMap.Remove(quest.info.id);
+		activeQuestMap.Remove(quest.info.id);
+		Destroy(questUI);
 	}
 
 	private void ClaimRewards(Quest quest)
@@ -93,7 +95,7 @@ public class QuestManager : MonoBehaviour
 		QuestInfoSO questInfo = allQuests[randomNum];
 		Quest questToAdd = new Quest(questInfo);
 
-		GameObject questUI = Instantiate(questUIPrefab, questListParent);
+		questUI = Instantiate(questUIPrefab, questListParent);
 		questUI.gameObject.name = questInfo.id;
 		questUI.GetComponent<QuestUI>().Setup(questToAdd, this);
 
