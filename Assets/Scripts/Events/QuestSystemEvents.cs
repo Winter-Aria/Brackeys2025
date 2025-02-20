@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class QuestSystemEvents
 {
@@ -35,6 +36,25 @@ public class QuestSystemEvents
 		if (onQuestStateChange != null)
 		{
 			onQuestStateChange(quest);
+		}
+	}
+
+	public event Action onTaskProgress;
+	public void TaskProgress()
+	{
+		if (onTaskProgress != null)
+		{
+			onTaskProgress();
+		}
+	}
+
+
+	public event Action<int> updateProgress;
+	public void UpdateProgress(int progress)
+	{
+		if (updateProgress != null)
+		{
+			updateProgress(progress);
 		}
 	}
 }

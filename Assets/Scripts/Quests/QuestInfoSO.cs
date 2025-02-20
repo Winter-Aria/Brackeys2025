@@ -11,6 +11,7 @@ public class QuestInfoSO : ScriptableObject
 	public GameObject[] questStepPrefabs;
 
 	public int score;
+	public int timeToComplete;
 
 
 	//Set ID of the quest to the name of the scriptable object

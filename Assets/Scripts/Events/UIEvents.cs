@@ -10,4 +10,13 @@ public class UIEvents
 			randomQuestCreated(quest);
 		}
 	}
+
+	public event Action tabPressed;
+	public void TabPressed()
+	{
+		if (tabPressed != null)
+		{
+			tabPressed();
+		}
+	}
 }

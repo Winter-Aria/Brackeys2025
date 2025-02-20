@@ -10,11 +10,13 @@ public class CollectRubbish : QuestStep
 	private void OnEnable()
 	{
 		EventManager.Instance.taskEvents.rubbishCollected += RubbishCollected;
+		EventManager.Instance.uiEvents.tabPressed += TabPressed;
 	}
 
 	private void OnDisable()
 	{
-		EventManager.Instance.taskEvents.rubbishCollected += RubbishCollected;
+		EventManager.Instance.taskEvents.rubbishCollected -= RubbishCollected;
+		EventManager.Instance.uiEvents.tabPressed -= TabPressed;
 	}
 
 	private void Start()
@@ -34,5 +36,10 @@ public class CollectRubbish : QuestStep
 		{
 			FinishQuestStep();
 		}
+	}
+
+	private void TabPressed()
+	{
+		EventManager.Instance.questSystemEvents.UpdateProgress(rubbishCollected);
 	}
 }
