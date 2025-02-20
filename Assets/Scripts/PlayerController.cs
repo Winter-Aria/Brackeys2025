@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float deceleration = 15f;
     [SerializeField] private float velPower = 1f;
     [SerializeField] private float frictionAmount = 5f;
-    [SerializeField] private float maxEnergy = 5f;
+    [SerializeField] public float maxEnergy = 5f;
     [SerializeField] private float energyRegenRate = 1f;
     [SerializeField] private float sprintEnergyCost = 1f;
     [SerializeField] private GameObject SCRAPSprite;
@@ -154,6 +154,9 @@ public class PlayerController : MonoBehaviour
         {
             menuActive = !menuActive;
             menuUI.SetActive(menuActive);
+
+            EventManager.Instance.uiEvents.TabPressed();
         }
+
     }
 }
