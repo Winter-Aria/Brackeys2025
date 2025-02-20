@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public float currentEnergy;
     private bool isSprinting;
     public float dirX = 0f;
+    [SerializeField] private GameObject menuUI;
+    private bool menuActive = false;
 
     public void Awake()
     {
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Running", false);
         }
-
+        HandleMenuToggle();
         HandleSprint();
         RegenerateEnergy();
     }
@@ -68,8 +70,19 @@ public class PlayerController : MonoBehaviour
     private void GetInputs()
     {
         dirX = Input.GetAxisRaw("Horizontal");
-        isSprinting = Input.GetKey(KeyCode.LeftShift) && currentEnergy > 0f;
+
+        // Allow sprinting to continue down to 0, but not start below 3
+        if (Input.GetKey(KeyCode.LeftShift) && (isSprinting || currentEnergy > 3f))
+        {
+            isSprinting = true;
+        }
+        else
+        {
+            isSprinting = false;
+        }
     }
+
+
     public void Move()
     {
         float speedModifier = isSprinting ? sprintMultiplier : 1f;
@@ -88,11 +101,14 @@ public class PlayerController : MonoBehaviour
         {
             currentEnergy -= sprintEnergyCost * Time.deltaTime;
             currentEnergy = Mathf.Clamp(currentEnergy, 0f, maxEnergy);
-            
-            // Trigger screen shake when sprinting
+
+            if (currentEnergy <= 0f)
+            {
+                isSprinting = false; // Stop sprinting when energy hits 0
+            }
+
             if (shakeData != null)
             {
-                
                 CameraShakerHandler.Shake(shakeData);
             }
             particles.Play();
@@ -114,28 +130,30 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        if (dirX > 0f)
+        if (dirX != 0f)
         {
-            Vector3 newScale = SCRAPSprite.transform.localScale;
-            newScale.x = Mathf.Abs(newScale.x);
-            SCRAPSprite.transform.localScale = new Vector3(-newScale.x, newScale.y, newScale.z);
+            bool facingLeft = dirX > 0f; // Player starts facing left, so reverse logic
 
-            // Flip particles
-            Vector3 particleScale = particles.transform.localScale;
-            particleScale.x = Mathf.Abs(particleScale.x);
-            particles.transform.localScale = new Vector3(-particleScale.x, particleScale.y, particleScale.z);
-        }
-        else if (dirX < 0f)
-        {
+            // Flip player sprite
             Vector3 newScale = SCRAPSprite.transform.localScale;
-            newScale.x = -Mathf.Abs(newScale.x);
-            SCRAPSprite.transform.localScale = new Vector3(-newScale.x, newScale.y, newScale.z);
+            newScale.x = facingLeft ? -Mathf.Abs(newScale.x) : Mathf.Abs(newScale.x);
+            SCRAPSprite.transform.localScale = newScale;
 
-            // Flip particles
+            // Flip Particles: Change localScale to properly flip the effect
             Vector3 particleScale = particles.transform.localScale;
-            particleScale.x = -Mathf.Abs(particleScale.x);
-            particles.transform.localScale = new Vector3(-particleScale.x, particleScale.y, particleScale.z);
+            particleScale.x = facingLeft ? -Mathf.Abs(particleScale.x) : Mathf.Abs(particleScale.x);
+            particles.transform.localScale = particleScale;
         }
     }
 
+
+
+    private void HandleMenuToggle()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            menuActive = !menuActive;
+            menuUI.SetActive(menuActive);
+        }
+    }
 }
