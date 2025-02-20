@@ -1,19 +1,37 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public TextMeshProUGUI scoreText; // Assign in Inspector
+    public float scoreMultiplier = 100f; // Adjust to control score growth
+
+    private float startTime;
+    private int score;
+
     void Start()
     {
         //Initialise tasks
+        startTime = Time.time;
+        UpdateScoreDisplay();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Time.realtimeSinceStartup / 60 > 1)
-        {
-            //give task
-        }
+        UpdateScore();
+    }
+
+    void UpdateScore()
+    {
+        float elapsedTime = Time.time - startTime;
+        score = Mathf.FloorToInt(scoreMultiplier * Mathf.Pow(elapsedTime, 1.5f)); // Quadratic growth
+        UpdateScoreDisplay();
+    }
+
+    void UpdateScoreDisplay()
+    {
+        scoreText.text = "Score: " + score;
     }
 }
+
+  

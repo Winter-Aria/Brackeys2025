@@ -3,6 +3,8 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using FirstGearGames.SmoothCameraShaker;
+using System.Runtime.CompilerServices;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +30,11 @@ public class PlayerController : MonoBehaviour
     public float dirX = 0f;
     [SerializeField] private GameObject menuUI;
     private bool menuActive = false;
+    private AudioSource audioSource;
+    private AudioClip clip;
+    [SerializeField] private AudioClip movingStop;
+    [SerializeField] private AudioClip movingStart;
+    [SerializeField] private AudioClip movingLoop;
 
     public void Awake()
     {
@@ -46,6 +53,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentEnergy = maxEnergy;
+        audioSource = GetComponent<AudioSource>();
     }
     public void Update()
     {
@@ -159,4 +167,5 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+   
 }

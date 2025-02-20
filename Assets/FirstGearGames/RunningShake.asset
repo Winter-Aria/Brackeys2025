@@ -21,7 +21,7 @@ MonoBehaviour:
   _totalDuration: 0.05
   _fadeInDuration: 0.13
   _fadeOutDuration: 0.1
-  _magnitude: 0.4
+  _magnitude: 0.19
   _magnitudeNoise: 0.1
   _magnitudeCurve:
     serializedVersion: 2
@@ -31,7 +31,7 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
@@ -40,15 +40,15 @@ MonoBehaviour:
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _roughness: 7.5
-  _roughnessNoise: 0.3
+  _roughness: 6.04
+  _roughnessNoise: 0
   _roughnessCurve:
     serializedVersion: 2
     m_Curve:
@@ -73,8 +73,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _positionalInfluence: {x: 1, y: 1, z: 0}
+  _positionalInfluence: {x: 0.2, y: 0.2, z: 0}
   _positionalInverts: 0
-  _rotationalInfluence: {x: 0, y: 0, z: 1}
+  _rotationalInfluence: {x: 0, y: 0, z: 0}
   _rotationalInverts: 0
   _randomSeed: 1
