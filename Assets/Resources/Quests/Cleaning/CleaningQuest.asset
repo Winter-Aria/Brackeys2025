@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0943ac1e0e843442ac079ac26bc7ebb, type: 3}
   m_Name: CleaningQuest
   m_EditorClassIdentifier: 
-  <id>k__BackingField: CleaningQuest
-  displayName: Clean The Rubbish
-  displayRoom: Observation Room
-  questStepPrefabs:
-  - {fileID: 7020428281840112539, guid: a499b4f2d761a1f459ef4460bdd70c99, type: 3}
-  score: 50
+  <id>k__BackingField: 
+  displayName: 
+  displayRoom: 
+  questStepPrefabs: []
+  score: 0
   timeToComplete: 0

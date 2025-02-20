@@ -48,7 +48,6 @@ public class QuestSystemEvents
 		}
 	}
 
-
 	public event Action<int> updateProgress;
 	public void UpdateProgress(int progress)
 	{

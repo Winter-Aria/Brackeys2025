@@ -30,10 +30,12 @@ public class CollectRubbish : QuestStep
 		if (rubbishCollected < rubbishToComplete)
 		{
 			rubbishCollected++;
+			EventManager.Instance.questSystemEvents.UpdateProgress(rubbishCollected);
 		}
 
 		if (rubbishCollected >= rubbishToComplete)
 		{
+			EventManager.Instance.questSystemEvents.UpdateProgress(5);
 			FinishQuestStep();
 		}
 	}

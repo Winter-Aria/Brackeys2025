@@ -10,7 +10,12 @@ public class QuestManager : MonoBehaviour
 
 	[SerializeField] private GameObject questUIPrefab;
 	[SerializeField] private Transform questListParent;
+
+	[SerializeField] private GameObject questUIManagerPrefab;
+	[SerializeField] private Transform questUIManagerParent;
+
 	private GameObject questUI;
+	private GameObject questUIManager;
 
 	private void OnEnable()
 	{
@@ -33,7 +38,22 @@ public class QuestManager : MonoBehaviour
 
 	private void Update()
 	{
-		//foreach (Quest quest in 
+		if (notifiedQuestMap.Count > 0)
+		{
+			foreach (KeyValuePair<string, Quest> pair in notifiedQuestMap)
+			{
+				pair.Value.UpdateTimer(Time.deltaTime, pair.Value);
+			}
+		}
+		
+		if (activeQuestMap.Count > 0)
+		{
+			foreach (KeyValuePair<string, Quest> pair in activeQuestMap)
+			{
+				pair.Value.UpdateTimer(Time.deltaTime, pair.Value);
+			}
+		}
+		
 	}
 
 	private void ChangeQuestState(string id, QuestState state, Dictionary<string, Quest> map)
@@ -80,6 +100,7 @@ public class QuestManager : MonoBehaviour
 
 		activeQuestMap.Remove(quest.info.id);
 		Destroy(questUI);
+		Destroy(questUIManager);
 	}
 
 	private void ClaimRewards(Quest quest)
@@ -97,7 +118,7 @@ public class QuestManager : MonoBehaviour
 
 		questUI = Instantiate(questUIPrefab, questListParent);
 		questUI.gameObject.name = questInfo.id;
-		questUI.GetComponent<QuestUI>().Setup(questToAdd, this);
+		questUI.GetComponent<QuestUI>().Setup(questToAdd);
 
 		notifiedQuestMap.Add(questInfo.id, questToAdd);
 	}

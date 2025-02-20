@@ -16,14 +16,12 @@ public class QuestUI : MonoBehaviour
 	[SerializeField] private Button completeButton;
 
 	private Quest quest;
-	private float timeToAcknowledge;
-	private float timeToComplete;
-	private bool timeCompleted = false;
 	private float progress = 0;
 
 	private void OnEnable()
 	{
 		EventManager.Instance.questSystemEvents.updateProgress += UpdateProgress;
+		UpdateTimerText();
 	}
 
 	private void OnDisable()
@@ -31,34 +29,29 @@ public class QuestUI : MonoBehaviour
 		EventManager.Instance.questSystemEvents.updateProgress -= UpdateProgress;
 	}
 
-	public void Setup(Quest quest, QuestManager questManager)
+	public void Setup(Quest quest)
 	{
 		this.quest = quest;
-		timeToComplete = quest.info.timeToComplete;
-		timeToAcknowledge = quest.timeToAcknowledge;
 
 		displayName.text = quest.info.displayName;
 		roomName.text = quest.info.displayRoom;
-		timerText.text = quest.timeToAcknowledge.ToString();
+		timerText.text = quest.timeToShow.ToString();
 		progressText.text = "0";
 	}
 
 	private void Update()
 	{
-		if (!timeCompleted)
+		if (gameObject.activeInHierarchy) 
 		{
-			timeToAcknowledge -= Time.deltaTime;
-			timerText.text = Math.Truncate(timeToAcknowledge).ToString();
-			if (timeToAcknowledge <= 0.0f && timeCompleted == false)
-			{
-				timeToComplete -= Time.deltaTime;
-				timerText.text = Math.Truncate(timeToComplete).ToString();
-				if (timeToComplete <= 0.0f && timeCompleted == false)
-				{
-					Debug.Log("Finished");
-					timeCompleted = true;
-				}
-			}
+			UpdateTimerText();
+		}
+	}
+
+	private void UpdateTimerText()
+	{
+		if (quest != null)
+		{
+			timerText.text = Mathf.Floor(quest.timeToShow).ToString();
 		}
 		progressText.text = progress.ToString();
 	}
