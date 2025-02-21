@@ -28,13 +28,8 @@ public class PlayerController : MonoBehaviour
     public float currentEnergy;
     private bool isSprinting;
     public float dirX = 0f;
-    [SerializeField] private GameObject menuUI;
     private bool menuActive = false;
-    private AudioSource audioSource;
-    private AudioClip clip;
-    [SerializeField] private AudioClip movingStop;
-    [SerializeField] private AudioClip movingStart;
-    [SerializeField] private AudioClip movingLoop;
+    [SerializeField] private CanvasGroup menuCanvasGroup;
 
     public void Awake()
     {
@@ -53,7 +48,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentEnergy = maxEnergy;
-        audioSource = GetComponent<AudioSource>();
+       
     }
     public void Update()
     {
@@ -161,11 +156,41 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             menuActive = !menuActive;
-            menuUI.SetActive(menuActive);
+            menuCanvasGroup.alpha = menuActive ? 1 : 0;
+            menuCanvasGroup.interactable = menuActive;
+            menuCanvasGroup.blocksRaycasts = menuActive;
 
             EventManager.Instance.uiEvents.TabPressed();
         }
 
     }
+
+
+    public void OnRunStart()
+    {
+
+        SoundManager.Instance.PlaySound2D("MovementStart");
+    }
+
+    
+    public void OnRunStop()
+    {
+
+        SoundManager.Instance.PlaySound2D("MovementStop");
+    }
+
+    
+    public void OnRunLoop()
+    {
+
+        SoundManager.Instance.PlayLoopingSound("MovementLoop");
+    }
+
    
+    public void OnStopRunLoop()
+    {
+        SoundManager.Instance.StopLoopingSound();
+    }
 }
+
+
