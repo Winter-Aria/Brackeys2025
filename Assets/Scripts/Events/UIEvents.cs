@@ -11,12 +11,12 @@ public class UIEvents
 		}
 	}
 
-	public event Action tabPressed;
-	public void TabPressed()
+	public event Action<string, int> startNewStep;
+	public void StartNewStep(string id, int numOfProgress)
 	{
-		if (tabPressed != null)
+		if (startNewStep != null)
 		{
-			tabPressed();
+			startNewStep(id, numOfProgress);
 		}
 	}
 }

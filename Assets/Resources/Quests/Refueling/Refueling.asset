@@ -16,6 +16,6 @@ MonoBehaviour:
   displayName: Refuel Engines
   displayRoom: Engines
   questStepPrefabs:
-  - {fileID: 0}
+  - {fileID: 1372579794305987081, guid: bfadc011c48fe7d4888416295b595f25, type: 3}
   score: 300
   timeToComplete: 60
