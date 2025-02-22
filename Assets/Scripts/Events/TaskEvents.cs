@@ -29,4 +29,13 @@ public class TaskEvents
 			enterEngineArea(enterOrExit);
 		}
 	}
+
+	public event Action<int> newPartDroppedIn;
+	public void NewPartDroppedIn(int count)
+	{
+		if (newPartDroppedIn != null)
+		{
+			newPartDroppedIn(count);
+		}
+	}
 }

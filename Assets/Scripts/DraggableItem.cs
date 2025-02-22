@@ -7,6 +7,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
     private Image image;
     private CanvasGroup group;
     public Transform parentAfterDrag;
+	[SerializeField] private GameObject binGameObject;
+    private string oldPanelName;
+    private string newPanelName;
 
     private void Start()
     {
@@ -16,12 +19,14 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        parentAfterDrag = transform.parent;
+		oldPanelName = eventData.pointerDrag.transform.parent.parent.name;
+
+		parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         group.alpha = .5f;
         image.raycastTarget = false;
-    }
+	}
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -33,5 +38,18 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, 
         transform.SetParent(parentAfterDrag);
         group.alpha = 1f;
         image.raycastTarget = true;
+
+        newPanelName = eventData.pointerDrag.transform.parent.parent.name;
+
+		if (newPanelName == "MainPanel" && oldPanelName == "SidePanel" && eventData.pointerDrag.transform.name == "NewPart")
+        {
+            Debug.Log("Added 1");
+            EventManager.Instance.taskEvents.NewPartDroppedIn(1);
+        }
+        else if (newPanelName == "SidePanel" && oldPanelName == "MainPanel" && eventData.pointerDrag.transform.name == "NewPart")
+        {
+			Debug.Log("Taken away 1");
+			EventManager.Instance.taskEvents.NewPartDroppedIn(-1);
+		}
     }
 }

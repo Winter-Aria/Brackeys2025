@@ -10,7 +10,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
 	public void OnDrop(PointerEventData eventData)
 	{
 		GameObject droppedObject = eventData.pointerDrag;
-		if (droppedObject != null)
+		if (droppedObject != null && eventData.pointerDrag.transform.name != "NewPart")
 		{
 			Destroy(droppedObject);
 			droppedParts++;
