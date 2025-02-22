@@ -74,7 +74,6 @@ public class PlayerController : MonoBehaviour
     {
         dirX = Input.GetAxisRaw("Horizontal");
 
-        // Allow sprinting to continue down to 0, but not start below 3
         if (Input.GetKey(KeyCode.LeftShift) && (isSprinting || currentEnergy > 3f))
         {
             isSprinting = true;
@@ -107,7 +106,7 @@ public class PlayerController : MonoBehaviour
 
             if (currentEnergy <= 0f)
             {
-                isSprinting = false; // Stop sprinting when energy hits 0
+                isSprinting = false; 
             }
 
             if (shakeData != null)
@@ -135,14 +134,14 @@ public class PlayerController : MonoBehaviour
     {
         if (dirX != 0f)
         {
-            bool facingLeft = dirX > 0f; // Player starts facing left, so reverse logic
+            bool facingLeft = dirX > 0f; 
 
-            // Flip player sprite
+            
             Vector3 newScale = SCRAPSprite.transform.localScale;
             newScale.x = facingLeft ? -Mathf.Abs(newScale.x) : Mathf.Abs(newScale.x);
             SCRAPSprite.transform.localScale = newScale;
 
-            // Flip Particles: Change localScale to properly flip the effect
+            
             Vector3 particleScale = particles.transform.localScale;
             particleScale.x = facingLeft ? -Mathf.Abs(particleScale.x) : Mathf.Abs(particleScale.x);
             particles.transform.localScale = particleScale;

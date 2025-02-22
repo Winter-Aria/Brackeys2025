@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3544767115703457084}
   - component: {fileID: 8167308864147356415}
   - component: {fileID: 9168562035945076790}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rubbish5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -3014244973108009097, guid: d02b822fd3e2e804992d41007d246771, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -126,8 +126,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 3.15}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,9 +135,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: 0.49874115, y: 0.7103796}
+      - {x: -1.1940804, y: 0.7535348}
+      - {x: -1.1851311, y: -1.4729595}
+      - {x: 0.43148422, y: -1.5121107}
   m_UseDelaunayMesh: 0
 --- !u!114 &9168562035945076790
 MonoBehaviour:
@@ -163,7 +164,7 @@ GameObject:
   - component: {fileID: 2977782335876726583}
   - component: {fileID: 5587861695687552166}
   - component: {fileID: 8159995811323534627}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rubbish3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 2301384879061681368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.17, y: -14.63, z: -1.0295918}
+  m_LocalPosition: {x: 67.52, y: -14.63, z: -1.0295918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -229,7 +230,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -8823140637951843272, guid: d02b822fd3e2e804992d41007d246771, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -277,8 +278,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.16, y: 3.33}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -286,9 +287,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: 1.5158424, y: -0.63400555}
+      - {x: 0.8260231, y: 0.7776065}
+      - {x: -1.2203369, y: 0.6445713}
+      - {x: -1.1633224, y: -1.4651241}
+      - {x: 1.2759628, y: -1.3524847}
   m_UseDelaunayMesh: 0
 --- !u!114 &8159995811323534627
 MonoBehaviour:
@@ -350,7 +353,7 @@ GameObject:
   - component: {fileID: 2751690168775288446}
   - component: {fileID: 7761247369027552261}
   - component: {fileID: 2709450370883247834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rubbish4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +369,7 @@ Transform:
   m_GameObject: {fileID: 6568660179976737982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 58.96, y: -14.63, z: -1.0295918}
+  m_LocalPosition: {x: 59.81, y: -14.63, z: -1.0295918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -416,7 +419,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -5332150679100001321, guid: d02b822fd3e2e804992d41007d246771, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -464,8 +467,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.19, y: 2.37}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -473,9 +476,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: 0.8222046, y: -0.6078186}
+      - {x: 1.1184464, y: 0.050660133}
+      - {x: 0.70302963, y: 1.0583992}
+      - {x: 0.106594086, y: 0.8646288}
+      - {x: -0.6382904, y: 1.0779786}
+      - {x: -1.0979538, y: 0.086509705}
+      - {x: -0.750309, y: -0.7517404}
+      - {x: 0.09950256, y: -1.0270815}
   m_UseDelaunayMesh: 0
 --- !u!114 &2709450370883247834
 MonoBehaviour:
@@ -501,7 +509,7 @@ GameObject:
   - component: {fileID: 6837034810846209389}
   - component: {fileID: 8594882980880853807}
   - component: {fileID: 6876876304553953437}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rubbish2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 8591886333199835740}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 63.64, y: -14.63, z: -1.0295918}
+  m_LocalPosition: {x: 63.89, y: -14.63, z: -1.0295918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -567,7 +575,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 3221886530180909399, guid: d02b822fd3e2e804992d41007d246771, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -615,8 +623,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.92, y: 1.26}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -624,9 +632,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: -0.61502457, y: 0.5773587}
+      - {x: -0.65034103, y: -0.52101034}
+      - {x: 0.9100189, y: -0.12465948}
   m_UseDelaunayMesh: 0
 --- !u!114 &6876876304553953437
 MonoBehaviour:
@@ -652,7 +660,7 @@ GameObject:
   - component: {fileID: 1314766888379254426}
   - component: {fileID: 1468300462203454678}
   - component: {fileID: 6060399974566395877}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rubbish1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -668,7 +676,7 @@ Transform:
   m_GameObject: {fileID: 8600619367580553126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.9, y: -14.59, z: -1.0295918}
+  m_LocalPosition: {x: 53.23, y: -14.59, z: -1.0295918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,7 +726,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -3098072587249123821, guid: d02b822fd3e2e804992d41007d246771, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -766,8 +774,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.47, y: 1.87}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -775,9 +783,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: 1.3952141, y: 0.5035}
+      - {x: -1.3530579, y: 0.89170504}
+      - {x: -1.5113754, y: -0.39800447}
+      - {x: 1.443039, y: -0.69868463}
   m_UseDelaunayMesh: 0
 --- !u!114 &6060399974566395877
 MonoBehaviour:
