@@ -13,7 +13,7 @@ public class QuestPoint : MonoBehaviour
 
 	private void Start()
 	{
-		questId = gameObject.transform.parent.name;
+		questId = gameObject.transform.parent.parent.name;
 	}
 
 	private void OnEnable()

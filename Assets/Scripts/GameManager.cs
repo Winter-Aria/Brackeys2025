@@ -9,17 +9,7 @@ public class GameManager : MonoBehaviour
     private float startTime;
     private int score;
 
-	private void OnEnable()
-	{
-        EventManager.Instance.questSystemEvents.questUncompleted += QuestUncompleted;
-	}
-
-	private void OnDisable()
-	{
-		EventManager.Instance.questSystemEvents.questUncompleted -= QuestUncompleted;
-	}
-
-	void Start()
+    void Start()
     {
         //Initialise tasks
         startTime = Time.time;
@@ -41,11 +31,6 @@ public class GameManager : MonoBehaviour
     void UpdateScoreDisplay()
     {
         scoreText.text = "Score: " + score;
-    }
-
-    private void QuestUncompleted()
-    {
-        Debug.Log("Game lost");
     }
 }
 

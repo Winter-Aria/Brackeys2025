@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
@@ -11,10 +10,12 @@ public class QuestManager : MonoBehaviour
 
 	[SerializeField] private GameObject questUIPrefab;
 	[SerializeField] private Transform questListParent;
-	private GameObject actualPanel;
+
+	[SerializeField] private GameObject questUIManagerPrefab;
+	[SerializeField] private Transform questUIManagerParent;
 
 	private GameObject questUI;
-	private LayoutGroup layoutGroup;
+	private GameObject questUIManager;
 
 	private void OnEnable()
 	{
@@ -37,6 +38,21 @@ public class QuestManager : MonoBehaviour
 
 	private void Update()
 	{
+		if (notifiedQuestMap.Count > 0)
+		{
+			foreach (KeyValuePair<string, Quest> pair in notifiedQuestMap)
+			{
+				pair.Value.UpdateTimer(Time.deltaTime, pair.Value);
+			}
+		}
+		
+		if (activeQuestMap.Count > 0)
+		{
+			foreach (KeyValuePair<string, Quest> pair in activeQuestMap)
+			{
+				pair.Value.UpdateTimer(Time.deltaTime, pair.Value);
+			}
+		}
 		
 	}
 
@@ -84,6 +100,7 @@ public class QuestManager : MonoBehaviour
 
 		activeQuestMap.Remove(quest.info.id);
 		Destroy(questUI);
+		Destroy(questUIManager);
 	}
 
 	private void ClaimRewards(Quest quest)
@@ -100,7 +117,7 @@ public class QuestManager : MonoBehaviour
 		Quest questToAdd = new Quest(questInfo);
 
 		questUI = Instantiate(questUIPrefab, questListParent);
-		questUI.name = questToAdd.info.id;
+		questUI.gameObject.name = questInfo.id;
 		questUI.GetComponent<QuestUI>().Setup(questToAdd);
 
 		notifiedQuestMap.Add(questInfo.id, questToAdd);

@@ -1,14 +1,15 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Quest
 {
 	public QuestInfoSO info;
+	public float timeToShow;
 	public QuestState state;
-	public float timeToAcknowledge;
-	public float timeToComplete;
 
+	private bool timeCompleted;
 	private int currentQuestStepIndex;
+	private bool questStarted = false;
+	private float timeToComplete;
 
 	public Quest(QuestInfoSO questInfo)
 	{
@@ -16,7 +17,7 @@ public class Quest
 		this.state = QuestState.NOTIFIED;
 		this.currentQuestStepIndex = 0;
 		this.timeToComplete = questInfo.timeToComplete;
-		this.timeToAcknowledge = 10;
+		this.timeToShow = 10;
 	}
 
 	public void MoveToNextStep()
@@ -56,5 +57,31 @@ public class Quest
 			Debug.LogWarning("Tried to get quest step prefab but index was out of range.");
 		}
 		return questStepPrefab;
+	}
+
+	public void UpdateTimer(float deltaTime, Quest quest)
+	{
+		if (!timeCompleted)
+		{
+			if (!questStarted)
+			{
+				timeToShow = Mathf.Max(0, timeToShow - deltaTime);
+
+				if (timeToShow <= 0.0f)
+				{
+					EventManager.Instance.questSystemEvents.StartQuest(quest.info.id);
+					quest.questStarted = true;
+				}
+			}
+
+			if (questStarted)
+			{
+				timeToComplete = Mathf.Max(0, timeToComplete - deltaTime);
+				if (timeToComplete <= 0.0f)
+				{
+					timeCompleted = true;
+				}
+			}
+		}
 	}
 }
