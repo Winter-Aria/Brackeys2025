@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public ShakeData shakeData;
     public ParticleSystem particles;
     public TextMeshProUGUI gameOverText;
-    private bool countingScore;
+    private bool countingScore= true;
     
 
 	private void OnEnable()
