@@ -56,4 +56,13 @@ public class QuestSystemEvents
 			updateProgress(progress);
 		}
 	}
+
+	public event Action questUncompleted;
+	public void QuestUncompleted()
+	{
+		if (questUncompleted != null)
+		{
+			questUncompleted();
+		}
+	}
 }

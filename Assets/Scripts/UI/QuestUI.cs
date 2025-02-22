@@ -12,8 +12,10 @@ public class QuestUI : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI timerText;
 	[SerializeField] private TextMeshProUGUI progressText;
 
-	[SerializeField] private Button acknowledgeButton;
-	[SerializeField] private Button completeButton;
+	private float timeToAcknowledge;
+	private float timeToComplete;
+	private bool timeCompleted = false;
+	private bool acknowledged = false;
 
 	private Quest quest;
 	private float progress = 0;
@@ -21,7 +23,6 @@ public class QuestUI : MonoBehaviour
 	private void OnEnable()
 	{
 		EventManager.Instance.questSystemEvents.updateProgress += UpdateProgress;
-		UpdateTimerText();
 	}
 
 	private void OnDisable()
@@ -35,23 +36,41 @@ public class QuestUI : MonoBehaviour
 
 		displayName.text = quest.info.displayName;
 		roomName.text = quest.info.displayRoom;
-		timerText.text = quest.timeToShow.ToString();
+		timerText.text = quest.timeToAcknowledge.ToString();
 		progressText.text = "0";
+
+		timeToAcknowledge = quest.timeToAcknowledge;
+		timeToComplete = quest.timeToComplete;
 	}
 
 	private void Update()
 	{
-		if (gameObject.activeInHierarchy) 
+		if (quest.state.Equals(QuestState.IN_PROGRESS) && acknowledged == false)
 		{
-			UpdateTimerText();
+			acknowledged = true;
 		}
-	}
 
-	private void UpdateTimerText()
-	{
-		if (quest != null)
+		if (acknowledged == false && timeCompleted == false)
 		{
-			timerText.text = Mathf.Floor(quest.timeToShow).ToString();
+			timeToAcknowledge -= Time.deltaTime;
+			timerText.text = Math.Truncate(timeToAcknowledge).ToString();
+		}
+
+		if (timeToAcknowledge <= 0.0f && acknowledged == false)
+		{
+			EventManager.Instance.questSystemEvents.StartQuest(quest.info.id);
+			acknowledged = true;
+		}
+
+		if (acknowledged == true && timeCompleted == false)
+		{
+			timeToComplete -= Time.deltaTime;
+			timerText.text = Math.Truncate(timeToComplete).ToString();
+			if (timeToComplete <= 0.0f && timeCompleted == false)
+			{
+				EventManager.Instance.questSystemEvents.QuestUncompleted();
+				timeCompleted = true;
+			}
 		}
 		progressText.text = progress.ToString();
 	}
