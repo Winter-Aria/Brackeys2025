@@ -1,5 +1,9 @@
+using FirstGearGames.SmoothCameraShaker;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +12,12 @@ public class GameManager : MonoBehaviour
 
     private float startTime;
     private int score;
+    public CanvasGroup GameOverScreen;
+    public float gameOverLerpSpeed;
+    public ShakeData shakeData;
+    public ParticleSystem particles;
+    public TextMeshProUGUI gameOverText;
+    
 
 	private void OnEnable()
 	{
@@ -44,9 +54,31 @@ public class GameManager : MonoBehaviour
     }
 
 	private void QuestUncompleted()
-	{
-		Debug.Log("Game lost");
-	}
+    {
+        Debug.Log("Game lost");
+        if (shakeData != null)
+        {
+            CameraShakerHandler.Shake(shakeData);
+        }
+        particles.Play();
+        StartCoroutine(FadeInGameOverScreen());
+    }
+    private IEnumerator FadeInGameOverScreen()
+    {
+        float elapsedTime = 0f;
+        while (GameOverScreen.alpha < 1f)
+        {
+            elapsedTime += Time.deltaTime * gameOverLerpSpeed;
+            GameOverScreen.alpha = Mathf.Lerp(0f, 1f, elapsedTime);
+            GameOverScreen.interactable = true;
+            gameOverText.text = scoreText.text;
+            yield return null;
+        }
+    }
+    public void QuitToMain()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
 
   
