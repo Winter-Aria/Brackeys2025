@@ -1,9 +1,6 @@
-using Unity.VisualScripting;
-using UnityEditor.Tilemaps;
+
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 using FirstGearGames.SmoothCameraShaker;
-using System.Runtime.CompilerServices;
 
 
 public class PlayerController : MonoBehaviour
