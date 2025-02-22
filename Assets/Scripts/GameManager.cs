@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public ShakeData shakeData;
     public ParticleSystem particles;
     public TextMeshProUGUI gameOverText;
+    private bool countingScore;
     
 
 	private void OnEnable()
@@ -38,7 +39,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        UpdateScore();
+        if (countingScore)
+        {
+
+            UpdateScore();
+        }
     }
 
     void UpdateScore()
@@ -56,6 +61,7 @@ public class GameManager : MonoBehaviour
 	private void QuestUncompleted()
     {
         Debug.Log("Game lost");
+        countingScore = false;
         if (shakeData != null)
         {
             CameraShakerHandler.Shake(shakeData);
@@ -77,7 +83,7 @@ public class GameManager : MonoBehaviour
     }
     public void QuitToMain()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Credits");
     }
 }
 
