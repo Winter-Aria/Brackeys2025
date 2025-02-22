@@ -3,8 +3,6 @@ using System;
 public class TaskEvents
 {
 	public event Action rubbishCollected;
-	public event Action itemCollected;
-	public event Action itemDelivered;
 
 	public void RubbishCollected()
 	{
@@ -13,19 +11,22 @@ public class TaskEvents
 			rubbishCollected();
 		}
 	}
-	public void ItemCollected()
-	{
-		if (itemCollected != null)
-		{
-			itemCollected();
-		}
 
-	}
-	public void ItemDelivered()
+	public event Action fuelCanCollected;
+	public void FuelCanCollected()
 	{
-		if (itemDelivered != null)
+		if (fuelCanCollected != null)
 		{
-			itemDelivered();
+			fuelCanCollected();
+		}
+	}
+
+	public event Action<bool> enterEngineArea;
+	public void EnterEngineArea(bool enterOrExit)
+	{
+		if (enterEngineArea != null)
+		{
+			enterEngineArea(enterOrExit);
 		}
 	}
 }

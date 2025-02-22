@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8502879907119133970}
   - component: {fileID: 6865877167959991282}
   m_Layer: 0
-  m_Name: Refueling
+  m_Name: RefuelingQuestStepPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1372579794305987081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.248825, y: 11.02412, z: -0.046795823}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091c58e3279f9444ab2011431fedbca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 2850487782620116857, guid: 9cd2d570b70d7bd41a7749a1bbe707f6, type: 3}
+  fuelPrefab: {fileID: 7997339030669898586, guid: eb0ad33563cddc14a9c701c3503e6efd, type: 3}

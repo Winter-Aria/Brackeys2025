@@ -159,8 +159,6 @@ public class PlayerController : MonoBehaviour
             menuCanvasGroup.alpha = menuActive ? 1 : 0;
             menuCanvasGroup.interactable = menuActive;
             menuCanvasGroup.blocksRaycasts = menuActive;
-
-            EventManager.Instance.uiEvents.TabPressed();
         }
 
     }

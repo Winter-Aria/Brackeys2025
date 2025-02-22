@@ -16,17 +16,20 @@ public class QuestUI : MonoBehaviour
 	private float timeToComplete;
 	private bool timeCompleted = false;
 	private bool acknowledged = false;
+	private int totalProgress;
 
 	private Quest quest;
 	private float progress = 0;
 
 	private void OnEnable()
 	{
+		EventManager.Instance.uiEvents.startNewStep += StartNewStep;
 		EventManager.Instance.questSystemEvents.updateProgress += UpdateProgress;
 	}
 
 	private void OnDisable()
 	{
+		EventManager.Instance.uiEvents.startNewStep -= StartNewStep;
 		EventManager.Instance.questSystemEvents.updateProgress -= UpdateProgress;
 	}
 
@@ -72,11 +75,22 @@ public class QuestUI : MonoBehaviour
 				timeCompleted = true;
 			}
 		}
-		progressText.text = progress.ToString();
+		progressText.text = progress.ToString() + "/" + totalProgress.ToString();
 	}
 
-	private void UpdateProgress(int progressParam)
+	private void UpdateProgress(string id, int progressParam)
 	{
-		progress = progressParam;
+		if (id == quest.info.id)
+		{
+			progress = progressParam;
+		}
+	}
+
+	private void StartNewStep(string id, int progressToUpdate)
+	{
+		if (id == quest.info.id)
+		{
+			totalProgress = progressToUpdate;
+		}
 	}
 }

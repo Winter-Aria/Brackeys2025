@@ -48,12 +48,12 @@ public class QuestSystemEvents
 		}
 	}
 
-	public event Action<int> updateProgress;
-	public void UpdateProgress(int progress)
+	public event Action<string, int> updateProgress;
+	public void UpdateProgress(string id,int progress)
 	{
 		if (updateProgress != null)
 		{
-			updateProgress(progress);
+			updateProgress(id, progress);
 		}
 	}
 

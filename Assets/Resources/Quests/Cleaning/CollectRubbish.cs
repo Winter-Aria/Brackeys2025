@@ -10,17 +10,16 @@ public class CollectRubbish : QuestStep
 	private void OnEnable()
 	{
 		EventManager.Instance.taskEvents.rubbishCollected += RubbishCollected;
-		EventManager.Instance.uiEvents.tabPressed += TabPressed;
 	}
 
 	private void OnDisable()
 	{
 		EventManager.Instance.taskEvents.rubbishCollected -= RubbishCollected;
-		EventManager.Instance.uiEvents.tabPressed -= TabPressed;
 	}
 
 	private void Start()
 	{
+		EventManager.Instance.uiEvents.StartNewStep("CleaningQuest", 5);
 		Instantiate(rubbishPrefab, GameObject.Find("TaskSprites").transform);
 	}
 
@@ -30,18 +29,13 @@ public class CollectRubbish : QuestStep
 		if (rubbishCollected < rubbishToComplete)
 		{
 			rubbishCollected++;
-			EventManager.Instance.questSystemEvents.UpdateProgress(rubbishCollected);
+			EventManager.Instance.questSystemEvents.UpdateProgress("CleaningQuest", rubbishCollected);
 		}
 
 		if (rubbishCollected >= rubbishToComplete)
 		{
-			EventManager.Instance.questSystemEvents.UpdateProgress(5);
+			EventManager.Instance.questSystemEvents.UpdateProgress("CleaningQuest", 5);
 			FinishQuestStep();
 		}
-	}
-
-	private void TabPressed()
-	{
-		EventManager.Instance.questSystemEvents.UpdateProgress(rubbishCollected);
 	}
 }
