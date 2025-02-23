@@ -41,7 +41,7 @@ public class QuestManager : MonoBehaviour
 	private void Update()
 	{
 		timeFromStart = timeFromStart + Time.deltaTime;
-		if (Math.Truncate(timeFromStart) % 30 == 15 && canStartQuest == true)
+		if (Math.Truncate(timeFromStart) % 20 == 19 && canStartQuest == true)
 		{
 			CreateRandomQuest();
 			canStartQuest = false;
@@ -98,7 +98,7 @@ public class QuestManager : MonoBehaviour
 		ClaimRewards(quest);
 
 		activeQuestMap.Remove(quest.info.id);
-		Destroy(questUI);
+		Destroy(quest.UIPanelGameObject);
 	}
 
 	private void ClaimRewards(Quest quest)
@@ -119,9 +119,8 @@ public class QuestManager : MonoBehaviour
 			return; 
 		} else
 		{
-			Quest questToAdd = new Quest(questInfo);
-
 			questUI = Instantiate(questUIPrefab, questListParent);
+			Quest questToAdd = new Quest(questInfo, questUI);
 			questUI.name = questToAdd.info.id;
 			questUI.GetComponent<QuestUI>().Setup(questToAdd);
 

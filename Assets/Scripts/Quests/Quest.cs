@@ -7,16 +7,18 @@ public class Quest
 	public QuestState state;
 	public float timeToAcknowledge;
 	public float timeToComplete;
+	public GameObject UIPanelGameObject;
 
 	private int currentQuestStepIndex;
 
-	public Quest(QuestInfoSO questInfo)
+	public Quest(QuestInfoSO questInfo, GameObject UIPanel)
 	{
 		this.info = questInfo;
 		this.state = QuestState.NOTIFIED;
 		this.currentQuestStepIndex = 0;
 		this.timeToComplete = questInfo.timeToComplete;
 		this.timeToAcknowledge = 10;
+		this.UIPanelGameObject = UIPanel;
 	}
 
 	public void MoveToNextStep()
