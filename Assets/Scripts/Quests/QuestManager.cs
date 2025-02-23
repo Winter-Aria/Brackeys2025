@@ -15,7 +15,7 @@ public class QuestManager : MonoBehaviour
 	private GameObject questUI;
 	private LayoutGroup layoutGroup;
 	private float timeFromStart = 0;
-	private float timeForDelay = 5;
+	private float nextQuestTime = 20f;
 	private bool canStartQuest = false;
 
 	private void OnEnable()
@@ -40,19 +40,20 @@ public class QuestManager : MonoBehaviour
 
 	private void Update()
 	{
-		timeFromStart = timeFromStart + Time.deltaTime;
-		if (Math.Truncate(timeFromStart) % 20 == 19 && canStartQuest == true)
+		timeFromStart += Time.deltaTime;
+		if (Math.Truncate(timeFromStart) % 20 == 19 && canStartQuest)
 		{
 			CreateRandomQuest();
 			canStartQuest = false;
 
-			timeForDelay = timeForDelay - Time.deltaTime;
-			if (timeForDelay < 0)
-			{
-				canStartQuest = true;
-				timeForDelay = 5;
-			}
-} 
+			StartCoroutine(ResetQuestFlag());
+		} 
+	}
+
+	private IEnumerator<WaitForSeconds> ResetQuestFlag()
+	{
+		yield return new WaitForSeconds(5f);
+		canStartQuest = true;
 	}
 
 	private void ChangeQuestState(string id, QuestState state, Dictionary<string, Quest> map)
@@ -116,6 +117,7 @@ public class QuestManager : MonoBehaviour
 
 		if (notifiedQuestMap.ContainsKey(questInfo.id) || activeQuestMap.ContainsKey(questInfo.id))
 		{
+			CreateRandomQuest();
 			return; 
 		} else
 		{
