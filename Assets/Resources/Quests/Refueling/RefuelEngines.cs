@@ -9,6 +9,7 @@ public class RefuelEngines : QuestStep
     [SerializeField] private GameObject fuelPrefab;
     private GameObject spawnedItem;
     private bool isNearDeliveryPoint = false;
+    
 
     private void OnEnable()
     {
@@ -26,6 +27,7 @@ public class RefuelEngines : QuestStep
     {
 		EventManager.Instance.uiEvents.StartNewStep("Refueling", 2);
 		Transform taskParent = GameObject.Find("TaskSprites").transform;
+        
 		if (taskParent != null)
         {
             spawnedItem = Instantiate(fuelPrefab, taskParent);
