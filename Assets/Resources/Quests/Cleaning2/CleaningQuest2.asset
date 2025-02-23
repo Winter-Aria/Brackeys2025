@@ -15,6 +15,7 @@ MonoBehaviour:
   <id>k__BackingField: CleaningQuest2
   displayName: Clean up rubbish
   displayRoom: Whole Ship
-  questStepPrefabs: []
+  questStepPrefabs:
+  - {fileID: 7020428281840112539, guid: 5fa28d1bffcaed145882960448e549cf, type: 3}
   score: 300
   timeToComplete: 45

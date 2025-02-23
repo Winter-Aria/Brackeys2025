@@ -10,7 +10,8 @@ public class QuestManager : MonoBehaviour
 
 	[SerializeField] private GameObject questUIPrefab;
 	[SerializeField] private Transform questListParent;
-	
+	[SerializeField] private int timeBetweenQuests;
+
 	private GameObject actualPanel;
 	private GameObject questUI;
 	private LayoutGroup layoutGroup;
@@ -41,7 +42,7 @@ public class QuestManager : MonoBehaviour
 	private void Update()
 	{
 		timeFromStart += Time.deltaTime;
-		if (Math.Truncate(timeFromStart) % 20 == 19 && canStartQuest)
+		if (Math.Truncate(timeFromStart) % timeBetweenQuests == timeBetweenQuests -1 && canStartQuest)
 		{
 			CreateRandomQuest();
 			canStartQuest = false;
