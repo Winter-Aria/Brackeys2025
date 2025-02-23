@@ -7,27 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText; // Assign in Inspector
+	public TextMeshProUGUI scoreText; // Assign in Inspector
     public float scoreMultiplier = 100f; // Adjust to control score growth
 
     private float startTime;
-    private int score;
+    public int score;
     public CanvasGroup GameOverScreen;
     public float gameOverLerpSpeed;
     public ShakeData shakeData;
     public ParticleSystem particles;
     public TextMeshProUGUI gameOverText;
     private bool countingScore= true;
-    
 
 	private void OnEnable()
 	{
 		EventManager.Instance.questSystemEvents.questUncompleted += QuestUncompleted;
+		EventManager.Instance.questSystemEvents.scoreUpdate += AddQuestScore;
 	}
 
 	private void OnDisable()
 	{
 		EventManager.Instance.questSystemEvents.questUncompleted -= QuestUncompleted;
+		EventManager.Instance.questSystemEvents.scoreUpdate -= AddQuestScore;
 	}
 
 	void Start()
@@ -41,7 +42,6 @@ public class GameManager : MonoBehaviour
     {
         if (countingScore)
         {
-
             UpdateScore();
         }
     }
@@ -84,6 +84,11 @@ public class GameManager : MonoBehaviour
     public void QuitToMain()
     {
         SceneManager.LoadScene("Credits");
+    }
+    
+    private void AddQuestScore(int scoreToAdd)
+    {
+        score = score + scoreToAdd;
     }
 }
 

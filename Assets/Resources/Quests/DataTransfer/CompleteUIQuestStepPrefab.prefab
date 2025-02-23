@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5224704970113132019}
+  - component: {fileID: -7237127296400643997}
   m_Layer: 0
   m_Name: CompleteUIQuestStepPrefab
   m_TagString: Untagged
@@ -31,3 +32,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7237127296400643997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177820458979337101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f2b2384a9f21f4f9df8619c00a29df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keypadUIPrefab: {fileID: 3914225313881906502, guid: 2294594f2e95cee49863959fae566d99, type: 3}

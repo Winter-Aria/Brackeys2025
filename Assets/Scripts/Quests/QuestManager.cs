@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +7,16 @@ public class QuestManager : MonoBehaviour
 {
 	private Dictionary<string, Quest> notifiedQuestMap = new Dictionary<string, Quest>();
 	private Dictionary<string, Quest> activeQuestMap = new Dictionary<string, Quest>();
-	private int totalScore = 0;
 
 	[SerializeField] private GameObject questUIPrefab;
 	[SerializeField] private Transform questListParent;
+	
 	private GameObject actualPanel;
-
 	private GameObject questUI;
 	private LayoutGroup layoutGroup;
+	private float timeFromStart = 0;
+	private float timeForDelay = 5;
+	private bool canStartQuest = false;
 
 	private void OnEnable()
 	{
@@ -31,12 +34,25 @@ public class QuestManager : MonoBehaviour
 
 	private void Start()
 	{
-		//CreateRandomQuest();
+		CreateRandomQuest();
+		canStartQuest = true;
 	}
 
 	private void Update()
 	{
+		timeFromStart = timeFromStart + Time.deltaTime;
+		if (Math.Truncate(timeFromStart) % 30 == 15 && canStartQuest == true)
+		{
+			CreateRandomQuest();
+			canStartQuest = false;
 
+			timeForDelay = timeForDelay - Time.deltaTime;
+			if (timeForDelay < 0)
+			{
+				canStartQuest = true;
+				timeForDelay = 5;
+			}
+} 
 	}
 
 	private void ChangeQuestState(string id, QuestState state, Dictionary<string, Quest> map)
@@ -87,22 +103,29 @@ public class QuestManager : MonoBehaviour
 
 	private void ClaimRewards(Quest quest)
 	{
-		totalScore = totalScore + quest.info.score;
+		EventManager.Instance.questSystemEvents.ScoreUpdate(quest.info.score);
 	}
 
 	public void CreateRandomQuest()
 	{
 		QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
 
-		int randomNum = Random.Range(0, allQuests.Length);
+		int randomNum = UnityEngine.Random.Range(0, allQuests.Length);
 		QuestInfoSO questInfo = allQuests[randomNum];
-		Quest questToAdd = new Quest(questInfo);
 
-		questUI = Instantiate(questUIPrefab, questListParent);
-		questUI.name = questToAdd.info.id;
-		questUI.GetComponent<QuestUI>().Setup(questToAdd);
+		if (notifiedQuestMap.ContainsKey(questInfo.id) || activeQuestMap.ContainsKey(questInfo.id))
+		{
+			return; 
+		} else
+		{
+			Quest questToAdd = new Quest(questInfo);
 
-		notifiedQuestMap.Add(questInfo.id, questToAdd);
+			questUI = Instantiate(questUIPrefab, questListParent);
+			questUI.name = questToAdd.info.id;
+			questUI.GetComponent<QuestUI>().Setup(questToAdd);
+
+			notifiedQuestMap.Add(questInfo.id, questToAdd);
+		}
 	}
 
 	private Quest GetQuestById(string id, Dictionary<string, Quest> map)

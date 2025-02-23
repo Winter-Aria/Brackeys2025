@@ -17,5 +17,6 @@ MonoBehaviour:
   displayRoom: Cockpit -> Maintenance
   questStepPrefabs:
   - {fileID: 6567901803839381593, guid: 96c62182aedbb464d80b4bf9e1d102f1, type: 3}
+  - {fileID: 1177820458979337101, guid: f6e87efe36081024da550c78bb2358d3, type: 3}
   score: 400
   timeToComplete: 60

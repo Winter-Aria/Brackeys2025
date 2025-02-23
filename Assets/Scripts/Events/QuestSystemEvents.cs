@@ -65,4 +65,13 @@ public class QuestSystemEvents
 			questUncompleted();
 		}
 	}
+
+	public event Action<int> scoreUpdate;
+	public void ScoreUpdate(int score)
+	{
+		if (scoreUpdate != null)
+		{
+			scoreUpdate(score);
+		}
+	}
 }

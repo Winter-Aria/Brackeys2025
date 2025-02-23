@@ -38,4 +38,22 @@ public class TaskEvents
 			newPartDroppedIn(count);
 		}
 	}
+
+	public event Action keypadCodeCorrect;
+	public void KeypadCodeCorrect()
+	{
+		if (keypadCodeCorrect != null)
+		{
+			keypadCodeCorrect();
+		}
+	}
+
+	public event Action tabletCollected;
+	public void TabletCollected()
+	{
+		if (tabletCollected != null)
+		{
+			tabletCollected();
+		}
+	}
 }
