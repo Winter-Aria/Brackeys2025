@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         }
         particles.Play();
         StartCoroutine(FadeInGameOverScreen());
+        SoundManager.Instance.PlaySound2D("Explosion");
     }
     private IEnumerator FadeInGameOverScreen()
     {

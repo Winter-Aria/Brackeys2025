@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using FirstGearGames.SmoothCameraShaker;
 
@@ -45,7 +44,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentEnergy = maxEnergy;
-       
+
     }
     public void Update()
     {
@@ -117,6 +116,10 @@ public class PlayerController : MonoBehaviour
         {
             particles.Stop();
         }
+        if (isSprinting)
+        {
+            SoundManager.Instance.PlayLoopingSound("Boost");
+        }
     }
 
     private void RegenerateEnergy()
@@ -167,25 +170,24 @@ public class PlayerController : MonoBehaviour
         SoundManager.Instance.PlaySound2D("MovementStart");
     }
 
-    
+
     public void OnRunStop()
     {
 
         SoundManager.Instance.PlaySound2D("MovementStop");
     }
 
-    
+
     public void OnRunLoop()
     {
 
         SoundManager.Instance.PlayLoopingSound("MovementLoop");
     }
 
-   
+
     public void OnStopRunLoop()
     {
         SoundManager.Instance.StopLoopingSound();
     }
 }
-
 
