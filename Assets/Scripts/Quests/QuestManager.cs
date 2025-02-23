@@ -108,6 +108,7 @@ public class QuestManager : MonoBehaviour
 
 	public void CreateRandomQuest()
 	{
+		SoundManager.Instance.PlaySound2D("Alarm");
 		QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
 
 		int randomNum = UnityEngine.Random.Range(0, allQuests.Length);
