@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private SoundLibrary sfxLibrary;
     [SerializeField] private AudioSource sfx2DSource;
+    [SerializeField] private AudioSource boostAudioSource;
 
     private void Awake()
     {
@@ -52,6 +53,25 @@ public class SoundManager : MonoBehaviour
         {
             sfx2DSource.Stop();
            sfx2DSource.clip = null;
+        }
+    }
+    public void PlayLoopingBoostSound(string soundName)
+    {
+        AudioClip clip = sfxLibrary.GetClipFromName(soundName);
+        if (clip != null && boostAudioSource.clip != clip)
+        {
+            boostAudioSource.clip = clip;
+            boostAudioSource.loop = true;
+            boostAudioSource.Play();
+        }
+    }
+
+    public void StopLoopingBoostSound()
+    {
+        if (boostAudioSource.isPlaying)
+        {
+            boostAudioSource.Stop();
+            boostAudioSource.clip = null;
         }
     }
 }

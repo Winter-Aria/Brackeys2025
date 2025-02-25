@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
         {
             elapsedTime += Time.deltaTime * gameOverLerpSpeed;
             GameOverScreen.alpha = Mathf.Lerp(0f, 1f, elapsedTime);
+            GameOverScreen.blocksRaycasts = true;
             GameOverScreen.interactable = true;
             gameOverText.text = scoreText.text;
             yield return null;

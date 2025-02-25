@@ -111,16 +111,19 @@ public class PlayerController : MonoBehaviour
                 CameraShakerHandler.Shake(shakeData);
             }
             particles.Play();
+
+
+            SoundManager.Instance.PlayLoopingBoostSound("Boost");
         }
         else
         {
             particles.Stop();
-        }
-        if (isSprinting)
-        {
-            SoundManager.Instance.PlayLoopingSound("Boost");
+
+
+            SoundManager.Instance.StopLoopingBoostSound();
         }
     }
+
 
     private void RegenerateEnergy()
     {
@@ -190,4 +193,3 @@ public class PlayerController : MonoBehaviour
         SoundManager.Instance.StopLoopingSound();
     }
 }
-
